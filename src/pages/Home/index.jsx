@@ -1,7 +1,11 @@
-import Wrapper from '../../componets/Wrapper';
+import { Wrapper, Header } from '../../componets/index';
 
 function Home() {
-  return <Wrapper></Wrapper>;
+  return (
+    <Wrapper>
+      <Header></Header>
+    </Wrapper>
+  );
 }
 
 export default Home;
