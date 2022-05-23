@@ -1,4 +1,4 @@
-import Wrapper from '../componets/Wrapper';
+import Wrapper from '../../componets/Wrapper';
 
 function Home() {
   return <Wrapper></Wrapper>;
