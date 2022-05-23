@@ -1,4 +1,4 @@
-import './header.css';
+import './header.scss';
 
 import logo from '../../assets/images/logo.svg';
 import login from '../../assets/images/login.svg';

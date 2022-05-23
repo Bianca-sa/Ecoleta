@@ -1,10 +1,9 @@
-import Header from '../Header';
-import './wrapper.css';
+import './wrapper.scss';
 
-const Wrapper = () => {
+const Wrapper = ({ children }) => {
   return (
-    <div className='background'>
-      <Header />
+    <div className='wrapper'>
+      <div className='content'>{children}</div>
     </div>
   );
 };
