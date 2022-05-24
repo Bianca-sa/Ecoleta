@@ -1,5 +1,6 @@
 import Wrapper from './Wrapper';
 import Header from './Header';
-import ola from './Header';
+import Modal from './Modal';
+import Button from './Button';
 
-export { Wrapper, Header, ola };
+export { Wrapper, Header, Modal, Button };
