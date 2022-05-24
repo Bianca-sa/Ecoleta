@@ -1,0 +1,46 @@
+@import '../../styles/colors';
+
+.conteiner {
+  margin-top: 20%;
+  height: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  .text-box {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    h1 {
+      font-family: 'Ubunto', sans-serif;
+      font-size: 54px;
+      font-weight: 700;
+      color: $color-font;
+    }
+
+    p {
+      font-family: 'Roboto', sans-serif;
+      font-size: 24px;
+      color: $color-title;
+    }
+  }
+  .search {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: linear-gradient(to left, $color-button 75%, $color-search 5%);
+    width: 348px;
+    height: 72px;
+    border-radius: 8px;
+    cursor: pointer;
+
+    button {
+      background: $color-button;
+      border: none;
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      color: $color-font2;
+    }
+  }
+}

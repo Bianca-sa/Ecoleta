@@ -1,4 +1,20 @@
+@import '../../styles/colors';
+
 .wrapper {
-  margin-top: 46px;
-  padding: 0 160px;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+
+  .content {
+    margin: 0 auto;
+    padding: 46px 0 0;
+    width: 85%;
+    height: 100%;
+  }
+
+  .image {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
 }

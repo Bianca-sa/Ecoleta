@@ -5,7 +5,7 @@ import logo from '../../assets/images/logo.svg';
 import login from '../../assets/images/login.svg';
 import voltar from '../../assets/images/voltar.svg';
 
-const Header = ({ checkButton, checkImg }) => {
+const Header = ({ checkLink, checkImg }) => {
   return (
     <div className='header'>
       <img src={logo} alt='Logo da empresa Ecoleta' />
@@ -19,7 +19,7 @@ const Header = ({ checkButton, checkImg }) => {
           <img src={login} alt='Imagem sinalizando entrada' />
         )}
 
-        {checkButton ? (
+        {checkLink ? (
           <Link className='link' to='/home'>
             Voltar para home
           </Link>
