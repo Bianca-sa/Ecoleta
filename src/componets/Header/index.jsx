@@ -20,11 +20,11 @@ const Header = ({ checkLink, checkImg }) => {
         )}
 
         {checkLink ? (
-          <Link className='link' to='/home'>
+          <Link className='link' to='/'>
             Voltar para home
           </Link>
         ) : (
-          <Link className='link' to='/'>
+          <Link className='link' to='/register'>
             Cadastre um ponto de coleta
           </Link>
         )}

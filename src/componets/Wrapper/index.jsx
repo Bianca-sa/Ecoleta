@@ -1,9 +1,16 @@
 import './wrapper.scss';
 import principal from '../../assets/images/principal.svg';
 
-const Wrapper = ({ children, hasImage }) => {
+const Wrapper = ({ children, hasImage, backgroundList }) => {
   return (
-    <div className='wrapper'>
+    <div
+      className='wrapper'
+      style={
+        backgroundList && {
+          background: 'linear-gradient( to bottom, #e5e5e5 312px , #FFFFFF 0)',
+        }
+      }
+    >
       <div className='content'>{children}</div>
       {hasImage && (
         <img

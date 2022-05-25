@@ -1,4 +1,5 @@
 import Button from '../Button';
+import { Link } from 'react-router-dom';
 
 import './modal.scss';
 
@@ -14,7 +15,9 @@ const Modal = () => {
           <input type='text' placeholder='Digite a cidade' />
           <input type='text' placeholder='Digite o estado' />
         </form>
-        <Button />
+        <Link to='/list'>
+          <Button />
+        </Link>
       </div>
     </div>
   );
