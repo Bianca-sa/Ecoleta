@@ -1,0 +1,38 @@
+@import '../../styles/colors';
+
+.card {
+  .img-container {
+    max-width: 352;
+    max-height: 198px;
+    border-radius: 12px 12px 4px 4px;
+    margin: 0 32px 32px 0;
+  }
+
+  .text-card {
+    width: 235px;
+    height: 265px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  h3 {
+    font-family: 'Ubunto', sans-serif;
+    font-size: 36px;
+    color: $color-font;
+    margin-top: 24px;
+  }
+
+  p {
+    font-family: 'Ubunto', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: $color-button;
+  }
+
+  span {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: $color-title;
+  }
+}

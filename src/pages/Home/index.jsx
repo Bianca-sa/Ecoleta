@@ -1,8 +1,11 @@
-import { Wrapper, Header, ola } from '../../componets/index';
+import React, { useState } from 'react';
+import { Wrapper, Header, Modal } from '../../componets/index';
 import buscar from '../../assets/images/buscar.svg';
 import './home.scss';
 
 function Home() {
+  const [openModal, setOpenModal] = useState();
+
   return (
     <Wrapper hasImage>
       <Header />
@@ -18,9 +21,12 @@ function Home() {
         </div>
         <div className='search'>
           <img src={buscar}></img>
-          <button>Pesquisar pontos de coleta</button>
+          <button className='btnSearch' onClick={() => setOpenModal(true)}>
+            Pesquisar pontos de coleta
+          </button>
         </div>
       </div>
+      {openModal && <Modal />}
     </Wrapper>
   );
 }
