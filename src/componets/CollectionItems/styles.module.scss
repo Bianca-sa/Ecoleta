@@ -1,0 +1,19 @@
+@import '../../styles/colors.module.scss';
+
+.items {
+  min-width: 192px;
+  width: 100%;
+  min-height: 184px;
+  height: 100%;
+  background: $color-card;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+
+  p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: $color-font;
+    padding: 30px 0 0 0;
+  }
+}

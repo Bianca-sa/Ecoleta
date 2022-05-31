@@ -1,16 +1,20 @@
 import { Wrapper, Header, Card } from '../../componets/index';
-import './list.scss';
+import styles from './styles.module.scss';
 
 const List = () => {
+  const { cardCount, cards, containerList } = styles;
+
   return (
     <Wrapper backgroundList>
       <Header checkLink checkImg />
-      <span className='card-count'>
-        <b>2 pontos</b> encontrados
-      </span>
-      <div className='cards'>
-        <Card tilte='Recycle Plastic' subTitle='Ponto de coleta' />
-        <Card tilte='Papper for Nature' />
+      <div className={containerList}>
+        <span className={cardCount}>
+          <b>2 pontos</b> encontrados
+        </span>
+        <div className={cards}>
+          <Card />
+          <Card />
+        </div>
       </div>
     </Wrapper>
   );

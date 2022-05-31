@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { Wrapper, Header, Modal } from '../../componets/index';
 import buscar from '../../assets/images/buscar.svg';
-import './home.scss';
+import styles from './styles.module.scss';
 
 function Home() {
   const [openModal, setOpenModal] = useState();
 
+  const { container, textBox, search, btnSearch } = styles;
+
   return (
     <Wrapper hasImage>
       <Header />
-      <div className='conteiner'>
-        <div className='text-box'>
+      <div className={container}>
+        <div className={textBox}>
           <h1>
             Seu marketplace<br></br>de coleta de resíduos.
           </h1>
@@ -19,9 +21,9 @@ function Home() {
             eficiente.
           </p>
         </div>
-        <div className='search'>
+        <div className={search}>
           <img src={buscar}></img>
-          <button className='btnSearch' onClick={() => setOpenModal(true)}>
+          <button className={btnSearch} onClick={() => setOpenModal(true)}>
             Pesquisar pontos de coleta
           </button>
         </div>

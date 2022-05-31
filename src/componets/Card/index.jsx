@@ -1,13 +1,15 @@
-import './card.scss';
+import styles from './styles.module.scss';
 
-const Card = ({ imgCard, title, subTitle, text }) => {
+const Card = ({ imgCard, nameEntity, nameProps, address }) => {
+  const { card, textCard } = styles;
+
   return (
-    <div className='card'>
-      <img className='img-container' src={imgCard} />
-      <div className='text-card'>
-        <h3>{title}</h3>
-        <p>{subTitle}</p>
-        <span>{text}</span>
+    <div className={card}>
+      <img src={imgCard} />
+      <div className={textCard}>
+        <h3>{nameEntity}</h3>
+        <p>{nameProps}</p>
+        <span>{address}</span>
       </div>
     </div>
   );

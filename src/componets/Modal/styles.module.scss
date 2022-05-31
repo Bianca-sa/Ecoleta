@@ -1,6 +1,6 @@
-@import '../../styles/colors';
+@import '../../styles/colors.module.scss';
 
-.background-modal {
+.backgroundModal {
   position: absolute;
   background: rgba(0, 0, 0, 0.95);
   inset: 0 0 0 0;
@@ -9,6 +9,22 @@
   justify-content: center;
   z-index: 1;
 
+  .loadingModal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      height: 64px;
+    }
+
+    h2 {
+      font-family: 'Roboto', sans-serif;
+      font-size: 36px;
+      color: $color-font2;
+      margin: 40px 0;
+    }
+  }
   .modal {
     display: flex;
     flex-direction: column;
@@ -24,6 +40,7 @@
       color: $color-font2;
       margin: 40px 0;
     }
+
     input {
       width: 100%;
       height: 56px;

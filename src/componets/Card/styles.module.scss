@@ -1,14 +1,14 @@
-@import '../../styles/colors';
+@import '../../styles/colors.module.scss';
 
 .card {
-  .img-container {
+  .img {
     max-width: 352;
     max-height: 198px;
     border-radius: 12px 12px 4px 4px;
     margin: 0 32px 32px 0;
   }
 
-  .text-card {
+  .textCard {
     width: 235px;
     height: 265px;
     display: flex;
