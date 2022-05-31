@@ -1,0 +1,53 @@
+@import '../../styles/colors.module.scss';
+
+.contentContainer {
+  width: 736px;
+  margin: 0 auto;
+  margin-bottom: 32px;
+  padding: 92px 64px;
+  background: $color-font2;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
+
+  .formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 42px;
+  }
+
+  .cardContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    .text {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      span {
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        color: $color-title;
+      }
+    }
+
+    & > button {
+      max-width: 266px;
+      align-self: flex-end;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+  }
+  h4 {
+    font-family: 'Ubunto', sans-serif;
+    font-size: 24px;
+    color: $color-font;
+  }
+}

@@ -1,4 +1,4 @@
-import './header.scss';
+import styles from './styles.module.scss';
 import { Link } from 'react-router-dom';
 
 import logo from '../../assets/images/logo.svg';
@@ -6,10 +6,12 @@ import login from '../../assets/images/login.svg';
 import voltar from '../../assets/images/voltar.svg';
 
 const Header = ({ checkLink, checkImg }) => {
+  const { header, nav, link } = styles;
+
   return (
-    <div className='header'>
+    <div className={header}>
       <img src={logo} alt='Logo da empresa Ecoleta' />
-      <div className='nav'>
+      <div className={nav}>
         {checkImg ? (
           <img
             src={voltar}
@@ -20,11 +22,11 @@ const Header = ({ checkLink, checkImg }) => {
         )}
 
         {checkLink ? (
-          <Link className='link' to='/'>
+          <Link className={link} to='/'>
             Voltar para home
           </Link>
         ) : (
-          <Link className='link' to='/register'>
+          <Link className={link} to='/register'>
             Cadastre um ponto de coleta
           </Link>
         )}
