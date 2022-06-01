@@ -4,7 +4,7 @@ import Check from '../../assets/images/check.svg';
 
 import styles from './styles.module.scss';
 
-const Modal = (isLoadingModal) => {
+const Modal = ({ isLoadingModal }) => {
   const { backgroundModal, modal, loadingModal } = styles;
   const handleSubmit = (event) => {
     event.preventDefault();

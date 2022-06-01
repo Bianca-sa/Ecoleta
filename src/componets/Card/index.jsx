@@ -1,18 +1,26 @@
+import React from 'react';
 import styles from './styles.module.scss';
 
-const Card = ({ imgCard, nameEntity, nameProps, address }) => {
+const Card = ({ nameProps }) => {
   const { card, textCard } = styles;
 
-  return (
+  const dbStorage = sessionStorage.getItem('dbStorage');
+  const db = JSON.parse(dbStorage);
+
+  return db.map((obj) => (
     <div className={card}>
-      <img src={imgCard} />
+      <img src={obj.image} />
       <div className={textCard}>
-        <h3>{nameEntity}</h3>
-        <p>{nameProps}</p>
-        <span>{address}</span>
+        <h3>{obj.name}</h3>
+        <p>{obj.selectedCardLabel}</p>
+        <span>
+          {obj.city}, {obj.state}
+          <br /> {obj.address}
+          <br /> {obj.number}
+        </span>
       </div>
     </div>
-  );
+  ));
 };
 
 export default Card;

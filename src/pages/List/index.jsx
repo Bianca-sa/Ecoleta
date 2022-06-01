@@ -13,7 +13,6 @@ const List = () => {
         </span>
         <div className={cards}>
           <Card />
-          <Card />
         </div>
       </div>
     </Wrapper>
