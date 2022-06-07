@@ -16,6 +16,9 @@ export const ContextProvider = ({ children }) => {
   const [city, setCity] = useState();
   const [state, setState] = useState();
   const [image, setImage] = useState();
+  const [filterCity, setFilterCity] = useState();
+  const [filterState, setFilterState] = useState();
+  const [stateApiIbge, setStateApiIbge] = useState();
 
   return (
     <Context.Provider
@@ -46,6 +49,12 @@ export const ContextProvider = ({ children }) => {
         setState,
         image,
         setImage,
+        filterCity,
+        setFilterCity,
+        filterState,
+        setFilterState,
+        stateApiIbge,
+        setStateApiIbge,
       }}
     >
       {children}

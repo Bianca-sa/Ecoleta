@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Wrapper, Header, Modal } from '../../componets/index';
 import buscar from '../../assets/images/buscar.svg';
 import styles from './styles.module.scss';
+import Context from '../../context';
 
 function Home() {
   const [openModal, setOpenModal] = useState();
+  const { setStateApiIbge } = useContext(Context);
 
   const { container, textBox, search, btnSearch } = styles;
+
+  useEffect(() => {
+    if (openModal) {
+      fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
+        .then((response) => response.json())
+        .then((data) => setStateApiIbge(data));
+    }
+  }, [openModal]);
 
   return (
     <Wrapper hasImage>
@@ -21,14 +31,12 @@ function Home() {
             eficiente.
           </p>
         </div>
-        <div className={search}>
+        <div className={search} onClick={() => setOpenModal(true)}>
           <img src={buscar}></img>
-          <button className={btnSearch} onClick={() => setOpenModal(true)}>
-            Pesquisar pontos de coleta
-          </button>
+          <span className={btnSearch}>Pesquisar pontos de coleta</span>
         </div>
       </div>
-      {openModal && <Modal />}
+      {openModal && <Modal closeModal={() => setOpenModal(false)} />}
     </Wrapper>
   );
 }

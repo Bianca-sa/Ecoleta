@@ -3,12 +3,12 @@
 .wrapper {
   width: 100%;
   min-height: 100vh;
-  height: 100%;
 
   .content {
     margin: 0 auto;
     padding: 46px 0 0;
     width: 85%;
+    min-width: 1080px;
     height: 100%;
   }
 
@@ -16,5 +16,16 @@
     position: absolute;
     right: 0;
     bottom: 0;
+    width: 60%;
+  }
+}
+
+@media (max-width: 1400px) {
+  .image {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 900px;
+    height: 500px;
   }
 }

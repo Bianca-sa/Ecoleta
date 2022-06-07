@@ -20,7 +20,7 @@ const Form = () => {
         <span>Nome da entidade</span>
         <input
           type='text'
-          onChange={(event) => setName(event.target.value)}
+          onChange={(event) => setName(event.target.value.toLowerCase())}
           required='required'
         />
       </label>
@@ -28,7 +28,7 @@ const Form = () => {
         <span>Endereço</span>
         <input
           type='text'
-          onChange={(event) => setAddress(event.target.value)}
+          onChange={(event) => setAddress(event.target.value.toLowerCase())}
           required
         />
       </label>
@@ -44,7 +44,7 @@ const Form = () => {
         <span>Cidade</span>
         <input
           type='text'
-          onChange={(event) => setCity(event.target.value)}
+          onChange={(event) => setCity(event.target.value.toLowerCase())}
           required
         />
       </label>
@@ -52,7 +52,7 @@ const Form = () => {
         <span>Estado</span>
         <input
           type='text'
-          onChange={(event) => setState(event.target.value)}
+          onChange={(event) => setState(event.target.value.toLowerCase())}
           required
         />
       </label>

@@ -48,8 +48,10 @@ const Register = () => {
     number,
     image,
   } = useContext(Context);
+
   const [openModal, setOpenModal] = useState();
   const [selectedCardLabel, setSelectedCardLabel] = useState([]);
+  const [textAlert, setTextAlert] = useState(false);
   const navigate = useNavigate();
 
   const handleOpenModal = () => {
@@ -57,13 +59,17 @@ const Register = () => {
     return setTimeout(() => {
       navigate('/');
       setOpenModal(false);
-    }, 2000);
+    }, 1000);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const db = JSON.parse(sessionStorage.getItem('dbStorage') || '[]');
+
+    if (selectedCardLabel.length == 0) {
+      return setTextAlert(true);
+    }
 
     db.push({ name, address, city, state, number, image, selectedCardLabel });
 
@@ -72,20 +78,11 @@ const Register = () => {
     return handleOpenModal();
   };
 
-  const handleClickCard = (label, stateFn, stateVar) => {
-    console.log(stateVar);
-
-    stateFn(!stateVar);
-
-    console.log(stateVar);
-    console.log(selectedCardLabel);
-
-    const index = selectedCardLabel?.findIndex((i) => i == label);
-    const newArray = [...selectedCardLabel];
-    newArray.slice(index, 1);
-    return stateVar
-      ? setSelectedCardLabel(label)
-      : setSelectedCardLabel(newArray);
+  const handleClickCard = (label, fn, variable) => {
+    fn(!variable);
+    return !variable
+      ? setSelectedCardLabel([...selectedCardLabel, label])
+      : setSelectedCardLabel(selectedCardLabel.filter((str) => str !== label));
   };
 
   useEffect(() => {
@@ -107,6 +104,7 @@ const Register = () => {
             <h4>Itens de coleta</h4>
             <span>Selecione um ou mais itens abaixo</span>
           </div>
+          {textAlert && <span>Selecione um dos items abaixo</span>}
           <div className={cards}>
             <CollectionItems
               img={Imagem}
@@ -123,34 +121,61 @@ const Register = () => {
             <CollectionItems
               img={Baterias}
               label='Pilhas e Baterias'
-              onClick={() => {
-                setSelectedPilhas(!selectedPilhas);
-                handleClickCard('Lâmpadas', selectedPilhas);
-              }}
+              onClick={() =>
+                handleClickCard(
+                  'Pilhas e Baterias',
+                  setSelectedPilhas,
+                  selectedPilhas
+                )
+              }
               selected={selectedPilhas}
             />
             <CollectionItems
               img={Papéis}
               label='Papéis e Papelão'
-              onClick={() => setSelectedPapeis(!selectedPapeis)}
+              onClick={() =>
+                handleClickCard(
+                  'Papéis e Papelão',
+                  setSelectedPapeis,
+                  selectedPapeis
+                )
+              }
               selected={selectedPapeis}
             />
             <CollectionItems
               img={Eletrônicos}
               label='Resíduos Eletrônicos'
-              onClick={() => setSelectedResiduos(!selectedResiduos)}
+              onClick={() =>
+                handleClickCard(
+                  'Resíduos Eletrônicos',
+                  setSelectedResiduos,
+                  selectedResiduos
+                )
+              }
               selected={selectedResiduos}
             />
             <CollectionItems
               img={Orgânicos}
               label='Resíduos Orgânicos'
-              onClick={() => setSelectedOrganicos(!selectedOrganicos)}
+              onClick={() =>
+                handleClickCard(
+                  'Resíduos Orgânicos',
+                  setSelectedOrganicos,
+                  selectedOrganicos
+                )
+              }
               selected={selectedOrganicos}
             />
             <CollectionItems
               img={Óleo}
               label='Óleo de Cozinha'
-              onClick={() => setSelectedOleo(!selectedOleo)}
+              onClick={() =>
+                handleClickCard(
+                  'Óleo de Cozinha',
+                  setSelectedOleo,
+                  selectedOleo
+                )
+              }
               selected={selectedOleo}
             />
           </div>
