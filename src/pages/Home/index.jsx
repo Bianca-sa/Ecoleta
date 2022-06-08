@@ -3,20 +3,36 @@ import { Wrapper, Header, Modal } from '../../componets/index';
 import buscar from '../../assets/images/buscar.svg';
 import styles from './styles.module.scss';
 import Context from '../../context';
+import { getData } from '../../utils/get-data';
 
 function Home() {
   const [openModal, setOpenModal] = useState();
-  const { setStateApiIbge } = useContext(Context);
+  const {
+    setStateApiIbge,
+    stateApiIbge,
+    cityApiIbge,
+    setCityApiIbge,
+    filterState,
+  } = useContext(Context);
 
   const { container, textBox, search, btnSearch } = styles;
 
+  const getStates = async () => {
+    const { data } = await getData('estados');
+
+    return setStateApiIbge(data);
+  };
+
+  const getCityByState = async () => {
+    const { data } = await getData(`estados/${filterState[1]}/municipios`);
+
+    return setCityApiIbge(data);
+  };
+
   useEffect(() => {
-    if (openModal) {
-      fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
-        .then((response) => response.json())
-        .then((data) => setStateApiIbge(data));
-    }
-  }, [openModal]);
+    if (openModal && !stateApiIbge) getStates();
+    if (filterState) getCityByState();
+  }, [openModal, filterState]);
 
   return (
     <Wrapper hasImage>

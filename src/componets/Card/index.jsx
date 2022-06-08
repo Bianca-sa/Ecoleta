@@ -18,6 +18,7 @@ const Card = ({
       <img src={image} />
       <div className={textCard}>
         <h3>{name}</h3>
+
         <p>{selectedCardLabel}</p>
         <span>
           {city}, {state}

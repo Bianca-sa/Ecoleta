@@ -19,6 +19,8 @@ export const ContextProvider = ({ children }) => {
   const [filterCity, setFilterCity] = useState();
   const [filterState, setFilterState] = useState();
   const [stateApiIbge, setStateApiIbge] = useState();
+  const [cityApiIbge, setCityApiIbge] = useState();
+  const [dataArray, setDataArray] = useState([]);
 
   return (
     <Context.Provider
@@ -55,6 +57,10 @@ export const ContextProvider = ({ children }) => {
         setFilterState,
         stateApiIbge,
         setStateApiIbge,
+        cityApiIbge,
+        setCityApiIbge,
+        dataArray,
+        setDataArray,
       }}
     >
       {children}

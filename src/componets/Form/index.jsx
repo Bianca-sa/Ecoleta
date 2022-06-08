@@ -41,18 +41,19 @@ const Form = () => {
         />
       </label>
       <label>
-        <span>Cidade</span>
-        <input
-          type='text'
-          onChange={(event) => setCity(event.target.value.toLowerCase())}
-          required
-        />
-      </label>
-      <label>
         <span>Estado</span>
         <input
           type='text'
           onChange={(event) => setState(event.target.value.toLowerCase())}
+          required
+        />
+      </label>
+
+      <label>
+        <span>Cidade</span>
+        <input
+          type='text'
+          onChange={(event) => setCity(event.target.value.toLowerCase())}
           required
         />
       </label>

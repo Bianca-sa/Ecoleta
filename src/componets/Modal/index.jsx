@@ -9,7 +9,14 @@ import styles from './styles.module.scss';
 
 const Modal = ({ isLoadingModal, closeModal }) => {
   const { backgroundModal, modal, loadingModal } = styles;
-  const { stateApiIbge, setFilterState, filterState } = useContext(Context);
+  const {
+    stateApiIbge,
+    setFilterState,
+    filterState,
+    filterCity,
+    setFilterCity,
+    cityApiIbge,
+  } = useContext(Context);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -29,7 +36,9 @@ const Modal = ({ isLoadingModal, closeModal }) => {
             <label>
               <select
                 value={filterState ? filterState : 'select'}
-                onChange={(event) => setFilterState(event.target.value)}
+                onChange={(event) =>
+                  setFilterState(event.target.value.split(','))
+                }
               >
                 <option value='select' disabled>
                   Selecione um estado
@@ -37,16 +46,24 @@ const Modal = ({ isLoadingModal, closeModal }) => {
                 {stateApiIbge?.map((obj, index) => (
                   <option
                     key={index}
-                    value={obj.nome}
+                    value={`${obj.nome},${obj.sigla}`}
                   >{`${obj.nome} (${obj.sigla})`}</option>
                 ))}
               </select>
             </label>
-            <input
-              type='text'
-              placeholder='Digite o estado'
-              onChange={(event) => setFilterState(event.target.value)}
-            />
+            <label>
+              <select
+                value={filterCity ? filterCity : 'select'}
+                onChange={(event) => setFilterCity(event.target.value)}
+              >
+                <option value='select' disabled>
+                  Selecione uma cidade
+                </option>
+                {cityApiIbge?.map((obj, index) => (
+                  <option key={index} value={obj.nome}>{`${obj.nome}`}</option>
+                ))}
+              </select>
+            </label>
           </form>
           <Link to='/list'>
             <Button label='Buscar' />
