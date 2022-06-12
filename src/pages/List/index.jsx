@@ -5,7 +5,7 @@ import Context from '../../context';
 
 const List = () => {
   const { cardCount, cards, containerList } = styles;
-  const { filterCity, filterState, dataArray } = useContext(Context);
+  const { filterCity, filterState } = useContext(Context);
 
   const dbStorage = sessionStorage.getItem('dbStorage');
   const db = JSON.parse(dbStorage);
@@ -15,13 +15,13 @@ const List = () => {
       <Header checkLink checkImg />
       <div className={containerList}>
         <span className={cardCount}>
-          {dataArray.length} {dataArray.length > 1 ? 'itens' : 'item'}
+          {db.length} {db.length > 1 ? 'itens' : 'item'}
         </span>
         <div className={cards}>
           {db
-            .filter(
+            ?.filter(
               (entity) =>
-                entity.state == filterState && entity.city == filterCity
+                entity.state[0] == filterState[0] && entity.city == filterCity
             )
             .map((obj, index) => (
               <Card

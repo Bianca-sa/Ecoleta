@@ -3,7 +3,7 @@ import { Wrapper, Header, Modal } from '../../componets/index';
 import buscar from '../../assets/images/buscar.svg';
 import styles from './styles.module.scss';
 import Context from '../../context';
-import { getData } from '../../utils/get-data';
+import { getStates, getCityByState } from '../../utils/get-data';
 
 function Home() {
   const [openModal, setOpenModal] = useState();
@@ -17,21 +17,9 @@ function Home() {
 
   const { container, textBox, search, btnSearch } = styles;
 
-  const getStates = async () => {
-    const { data } = await getData('estados');
-
-    return setStateApiIbge(data);
-  };
-
-  const getCityByState = async () => {
-    const { data } = await getData(`estados/${filterState[1]}/municipios`);
-
-    return setCityApiIbge(data);
-  };
-
   useEffect(() => {
-    if (openModal && !stateApiIbge) getStates();
-    if (filterState) getCityByState();
+    if (openModal && !stateApiIbge) getStates(setStateApiIbge);
+    if (filterState) getCityByState(setCityApiIbge, filterState);
   }, [openModal, filterState]);
 
   return (

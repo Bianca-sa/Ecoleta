@@ -6,3 +6,15 @@ export const getData = async (path) => {
 
   return { status, data };
 };
+
+export const getStates = async (stateFn) => {
+  const { data } = await getData('estados');
+
+  return stateFn(data);
+};
+
+export const getCityByState = async (stateFn, uf) => {
+  const { data } = await getData(`estados/${uf[1]}/municipios`);
+
+  return stateFn(data);
+};

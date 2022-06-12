@@ -16,6 +16,7 @@ import {
   Modal,
 } from '../../componets';
 import styles from './styles.module.scss';
+import { getStates, getCityByState } from '../../utils/get-data';
 
 const Register = () => {
   const {
@@ -38,15 +39,17 @@ const Register = () => {
     setSelectedOrganicos,
     selectedOleo,
     setSelectedOleo,
-    modalConcluded,
-    dbArray,
-    setDbArray,
     name,
     address,
     city,
     state,
+    setState,
     number,
     image,
+    stateApiIbge,
+    setStateApiIbge,
+    filterState,
+    setCityApiIbge,
   } = useContext(Context);
 
   const [openModal, setOpenModal] = useState();
@@ -90,6 +93,11 @@ const Register = () => {
       sessionStorage.setItem('dbStorage', []);
     }
   }, []);
+
+  useEffect(() => {
+    getStates(setStateApiIbge);
+    if (state) getCityByState(setCityApiIbge, state);
+  }, [state]);
 
   return (
     <Wrapper>
