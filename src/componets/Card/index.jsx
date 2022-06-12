@@ -1,15 +1,30 @@
+import React from 'react';
 import styles from './styles.module.scss';
 
-const Card = ({ imgCard, nameEntity, nameProps, address }) => {
+const Card = ({
+  props,
+  image,
+  name,
+  selectedCardLabel,
+  city,
+  state,
+  address,
+  number,
+}) => {
   const { card, textCard } = styles;
 
   return (
-    <div className={card}>
-      <img src={imgCard} />
+    <div className={card} {...props}>
+      <img src={image} />
       <div className={textCard}>
-        <h3>{nameEntity}</h3>
-        <p>{nameProps}</p>
-        <span>{address}</span>
+        <h3>{name}</h3>
+
+        <p>{selectedCardLabel}</p>
+        <span>
+          {city}, {state}
+          <br /> {address}
+          <br /> {number}
+        </span>
       </div>
     </div>
   );

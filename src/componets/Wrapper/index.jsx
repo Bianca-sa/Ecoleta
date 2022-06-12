@@ -9,20 +9,20 @@ const Wrapper = ({ children, hasImage, backgroundList }) => {
       className={wrapper}
       style={
         backgroundList && {
-          background: 'linear-gradient( to bottom, #e5e5e5 312px , #FFFFFF 0)',
+          background: 'linear-gradient( to bottom, #e5e5e5 320px, #FFFFFF 0)',
         }
       }
     >
       <div className={content}>{children}</div>
-      {hasImage && (
-        <img
-          className={image}
-          src={principal}
-          alt='Dezenho de uma mulher negra levando uma garrafa para reciclar e um homem branco levando papeis para reciclar.'
-        />
-      )}
+      {hasImage && <img className={image} src={principal} />}
     </div>
   );
 };
 
 export default Wrapper;
+
+// 1- Criar 5 cards com endereços reais
+// 2- Na list mostrar os cards de acordo com o filtro do modal.
+// salva os dados do modal no context'
+// na list verifique se esta chegando no context os dados
+// com base nos dados fazer a listagem

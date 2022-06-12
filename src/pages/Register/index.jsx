@@ -4,8 +4,9 @@ import Papéis from '../../assets/images/papeis.svg';
 import Eletrônicos from '../../assets/images/eletronicos.svg';
 import Orgânicos from '../../assets/images/organicos.svg';
 import Óleo from '../../assets/images/oleo.svg';
-import { useState } from 'react';
-
+import React, { useContext, useState, useEffect } from 'react';
+import Context from '../../context';
+import { useNavigate } from 'react-router-dom';
 import {
   Wrapper,
   Header,
@@ -15,16 +16,9 @@ import {
   Modal,
 } from '../../componets';
 import styles from './styles.module.scss';
+import { getStates, getCityByState } from '../../utils/get-data';
 
 const Register = () => {
-  const [selectedLampadas, setSelectedLampadas] = useState(false);
-  const [selectedPilhas, setSelectedPilhas] = useState(false);
-  const [selectedPapeis, setSelectedPapeis] = useState(false);
-  const [selectedResiduos, setSelectedResiduos] = useState(false);
-  const [selectedOrganicos, setSelectedOrganicos] = useState(false);
-  const [selectedOleo, setSelectedOleo] = useState(false);
-  const [modalConcluded, setModalConcluded] = useState();
-
   const {
     contentContainer,
     formContainer,
@@ -32,14 +26,83 @@ const Register = () => {
     text,
     cards,
   } = styles;
+  const {
+    selectedLampadas,
+    setSelectedLampadas,
+    selectedPilhas,
+    setSelectedPilhas,
+    selectedPapeis,
+    setSelectedPapeis,
+    selectedResiduos,
+    setSelectedResiduos,
+    selectedOrganicos,
+    setSelectedOrganicos,
+    selectedOleo,
+    setSelectedOleo,
+    name,
+    address,
+    city,
+    state,
+    setState,
+    number,
+    image,
+    stateApiIbge,
+    setStateApiIbge,
+    filterState,
+    setCityApiIbge,
+  } = useContext(Context);
+
+  const [openModal, setOpenModal] = useState();
+  const [selectedCardLabel, setSelectedCardLabel] = useState([]);
+  const [textAlert, setTextAlert] = useState(false);
+  const navigate = useNavigate();
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+    return setTimeout(() => {
+      navigate('/');
+      setOpenModal(false);
+    }, 1000);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const db = JSON.parse(sessionStorage.getItem('dbStorage') || '[]');
+
+    if (selectedCardLabel.length == 0) {
+      return setTextAlert(true);
+    }
+
+    db.push({ name, address, city, state, number, image, selectedCardLabel });
+
+    sessionStorage.setItem('dbStorage', JSON.stringify(db));
+
+    return handleOpenModal();
+  };
+
+  const handleClickCard = (label, fn, variable) => {
+    fn(!variable);
+    return !variable
+      ? setSelectedCardLabel([...selectedCardLabel, label])
+      : setSelectedCardLabel(selectedCardLabel.filter((str) => str !== label));
+  };
+
+  useEffect(() => {
+    if (sessionStorage.getItem('dbStorage') == undefined) {
+      sessionStorage.setItem('dbStorage', []);
+    }
+  }, []);
+
+  useEffect(() => {
+    getStates(setStateApiIbge);
+    if (state) getCityByState(setCityApiIbge, state);
+  }, [state]);
 
   return (
     <Wrapper>
       <Header checkLink checkImg />
-      <form
-        className={contentContainer}
-        onSubmit={() => setModalConcluded(true)}
-      >
+      <form className={contentContainer} onSubmit={handleSubmit}>
         <div className={formContainer}>
           <h4>Dados da entidade</h4>
           <Form />
@@ -49,52 +112,85 @@ const Register = () => {
             <h4>Itens de coleta</h4>
             <span>Selecione um ou mais itens abaixo</span>
           </div>
+          {textAlert && <span>Selecione um dos items abaixo</span>}
           <div className={cards}>
             <CollectionItems
               img={Imagem}
               label='Lâmpadas'
-              onClick={() => setSelectedLampadas(!selectedLampadas)}
+              onClick={() =>
+                handleClickCard(
+                  'Lâmpadas',
+                  setSelectedLampadas,
+                  selectedLampadas
+                )
+              }
               selected={selectedLampadas}
             />
             <CollectionItems
               img={Baterias}
               label='Pilhas e Baterias'
-              onClick={() => setSelectedPilhas(!selectedPilhas)}
+              onClick={() =>
+                handleClickCard(
+                  'Pilhas e Baterias',
+                  setSelectedPilhas,
+                  selectedPilhas
+                )
+              }
               selected={selectedPilhas}
             />
             <CollectionItems
               img={Papéis}
               label='Papéis e Papelão'
-              onClick={() => setSelectedPapeis(!selectedPapeis)}
+              onClick={() =>
+                handleClickCard(
+                  'Papéis e Papelão',
+                  setSelectedPapeis,
+                  selectedPapeis
+                )
+              }
               selected={selectedPapeis}
             />
             <CollectionItems
               img={Eletrônicos}
               label='Resíduos Eletrônicos'
-              onClick={() => setSelectedResiduos(!selectedResiduos)}
+              onClick={() =>
+                handleClickCard(
+                  'Resíduos Eletrônicos',
+                  setSelectedResiduos,
+                  selectedResiduos
+                )
+              }
               selected={selectedResiduos}
             />
             <CollectionItems
               img={Orgânicos}
               label='Resíduos Orgânicos'
-              onClick={() => setSelectedOrganicos(!selectedOrganicos)}
+              onClick={() =>
+                handleClickCard(
+                  'Resíduos Orgânicos',
+                  setSelectedOrganicos,
+                  selectedOrganicos
+                )
+              }
               selected={selectedOrganicos}
             />
             <CollectionItems
               img={Óleo}
               label='Óleo de Cozinha'
-              onClick={() => setSelectedOleo(!selectedOleo)}
+              onClick={() =>
+                handleClickCard(
+                  'Óleo de Cozinha',
+                  setSelectedOleo,
+                  selectedOleo
+                )
+              }
               selected={selectedOleo}
             />
           </div>
-          <Button
-            isLoadingModal
-            type='submit'
-            label='Cadastrar ponto de coleta'
-          />
+          <Button type='submit' label='Cadastrar ponto de coleta' />
         </div>
       </form>
-      {modalConcluded && <Modal />}
+      {openModal && <Modal isLoadingModal />}
     </Wrapper>
   );
 };

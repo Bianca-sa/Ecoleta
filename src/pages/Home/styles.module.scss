@@ -1,7 +1,7 @@
 @import '../../styles/colors.module.scss';
 
 .container {
-  margin-top: 20%;
+  margin-top: 15%;
   max-height: 50%;
 
   display: flex;
@@ -44,6 +44,13 @@
       font-size: 16px;
       color: $color-font2;
       max-height: 72px;
+      cursor: pointer;
     }
+  }
+}
+
+@media (max-width: 1400px) {
+  .container {
+    margin-top: 10%;
   }
 }

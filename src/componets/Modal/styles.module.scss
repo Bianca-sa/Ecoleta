@@ -1,7 +1,7 @@
 @import '../../styles/colors.module.scss';
 
 .backgroundModal {
-  position: absolute;
+  position: fixed;
   background: rgba(0, 0, 0, 0.95);
   inset: 0 0 0 0;
   display: flex;
@@ -29,6 +29,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+
+    img {
+      width: 18px;
+      position: absolute;
+      z-index: 1;
+      right: 0;
+      cursor: pointer;
+    }
 
     a {
       width: 100%;
@@ -41,7 +50,7 @@
       margin: 40px 0;
     }
 
-    input {
+    select {
       width: 100%;
       height: 56px;
       font-family: 'Roboto', sans-serif;

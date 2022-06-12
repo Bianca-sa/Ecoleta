@@ -22,7 +22,8 @@
       color: $color-background-form;
     }
 
-    input {
+    input,
+    select {
       width: 100%;
       height: 50px;
       padding: 0 16px;

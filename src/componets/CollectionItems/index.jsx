@@ -2,7 +2,7 @@ import styles from './styles.module.scss';
 
 const CollectionItems = ({ label, img, onClick, selected }) => {
   const { items } = styles;
-  console.log(selected);
+
   return (
     <button
       className={items}
@@ -12,7 +12,7 @@ const CollectionItems = ({ label, img, onClick, selected }) => {
         selected
           ? {
               background: 'linear-gradient( #ffffff, #E1FAEC)',
-              border: '5px solid #34cb79',
+              border: '3px solid #34cb79',
             }
           : {}
       }
