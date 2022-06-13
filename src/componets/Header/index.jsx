@@ -9,7 +9,7 @@ const Header = ({ checkLink, checkImg }) => {
   const { header, nav, link } = styles;
 
   return (
-    <div className={header}>
+    <header className={header}>
       <img src={logo} alt='Logo da empresa Ecoleta' />
       <div className={nav}>
         {checkImg ? (
@@ -31,7 +31,7 @@ const Header = ({ checkLink, checkImg }) => {
           </Link>
         )}
       </div>
-    </div>
+    </header>
   );
 };
 

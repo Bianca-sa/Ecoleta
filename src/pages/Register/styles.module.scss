@@ -1,9 +1,12 @@
 @import '../../styles/colors.module.scss';
 
+header {
+  margin-bottom: 56px;
+}
+
 .contentContainer {
   width: 736px;
-  margin: 0 auto;
-  margin-bottom: 32px;
+  margin: 32px auto;
   padding: 92px 64px;
   background: $color-font2;
   border-radius: 8px;
